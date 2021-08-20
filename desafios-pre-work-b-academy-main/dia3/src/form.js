@@ -12,6 +12,5 @@ form.addEventListener('keyup', (event) => {
       : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }).join(' ');
 
-
   event.target.value = newPhrase;
 })
