@@ -1,7 +1,7 @@
-const form = document.querySelector('[data-js="form"]');
+const input = document.querySelector('[data-js="input"]');
 
 
-form.addEventListener('keyup', (event) => {
+input.addEventListener('keyup', (event) => {
   const targetValue = event.target.value;
   const inputPhrase = targetValue.split(' ');
 
