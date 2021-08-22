@@ -32,7 +32,7 @@ select.innerHTML = text;
 form.appendChild(select);
 
 const colorsContainer = document.createElement('div');
-document.body.appendChild(colorsContainer);
+const myColors = document.querySelector('[data-js="colors"]');
 
 select.addEventListener('change', (event) => {
   colorsContainer.innerHTML = '';
@@ -40,9 +40,11 @@ select.addEventListener('change', (event) => {
   const array = [...event.target.selectedOptions].map(element => element.value);
   array.forEach(color => {
     const div = document.createElement('div');
-    colorsContainer.appendChild(div);
     div.style.width = '100px';
     div.style.height = '100px';
     div.style.backgroundColor = color;
+    colorsContainer.appendChild(div);
   })
 })
+
+myColors.appendChild(colorsContainer);
