@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dia 4</title>
+  </head>
+  <body>
+    <div>
+      <form data-js="cars-registration">
+        <label for="image">
+          Imagem Carro (URL):
+          <input type="text" name="image" id="image">
+        </label>
+        <label for="year">
+          Ano:
+          <input type="number" name="year" id="year">
+        </label>
+        <label for="model">
+          Marca/Modelo:
+          <input type="text" name="model" id="model">
+        </label>
+        <label for="plate">
+          Placa:
+          <input type="text" name="plate" id="plate">
+        </label>
+        <label for="color">
+          Cor:
+          <input type="color" name="color" id="color">
+        </label>
+        <button>Cadastrar Carro</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Imagem Carro</th>
+            <th>Marca/Modelo</th>
+            <th>Placa</th>
+            <th>Cadastrar Carro</th>
+            <th>Cor</th>
+          </tr>
+        </thead>
+        <tbody data-js="table"></tbody>
+      </table>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
