@@ -33,3 +33,21 @@ form.addEventListener('submit', (event) => {
   form.reset();
   form.image.focus();
 })
+
+const url = 'http://localhost:3333/cars';
+
+const getCars = async () => {
+  const response = await fetch(url);
+  const cars = await response.json();
+
+  if(cars.length === 0) {
+    const td = document.createElement('td');
+    const tr = document.createElement('tr');
+    td.colSpan = 5;
+    td.textContent = 'Nenhum carro encontrado';
+    tr.appendChild(td);
+    table.appendChild(tr)
+  }
+};
+
+getCars();
