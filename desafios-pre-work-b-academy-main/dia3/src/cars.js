@@ -17,6 +17,8 @@ form.addEventListener('submit', (event) => {
       const td = document.createElement('td');
       const img = document.createElement('img');
       img.src = item;
+      img.width = 100;
+      img.height = 100;
       td.appendChild(img);
       tr.appendChild(td);
     } else {
