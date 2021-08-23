@@ -2,8 +2,24 @@ import './style.css';
 
 const form = document.querySelector('[data-js="cars-registration"]');
 const table = document.querySelector('[data-js="table"]');
+const url = 'http://localhost:3333/cars';
 
-form.addEventListener('submit', (event) => {
+const request = (url, options) =>
+  fetch(url, options)
+    .then(r => r.json())
+    .catch(e => ({ error: true, message: e.message }))
+
+const createRequest = (method) => (url, data) => request(url, {
+  method,
+  headers: {
+    'content-type': 'application/json',
+  },
+  body: JSON.stringify(data)
+})
+
+const post = createRequest('POST');
+
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const image = event.target.elements['image'].value;
   const year = event.target.elements['year'].value;
@@ -11,8 +27,14 @@ form.addEventListener('submit', (event) => {
   const plate = event.target.elements['plate'].value;
   const color = event.target.elements['color'].value;
   const items = [image, year, model, plate, color];
+  const object = { image, model, year, plate, color };
+  console.log(object)
+
+  const response = await post(url, object)
+  console.log(response)
 
   const tr = document.createElement('tr');
+
   items.forEach((item, index) => {
     if(index === 0) {
       const td = document.createElement('td');
@@ -34,8 +56,6 @@ form.addEventListener('submit', (event) => {
   form.image.focus();
 })
 
-const url = 'http://localhost:3333/cars';
-
 const getCars = async () => {
   const response = await fetch(url);
   const cars = await response.json();
@@ -46,7 +66,24 @@ const getCars = async () => {
     td.colSpan = 5;
     td.textContent = 'Nenhum carro encontrado';
     tr.appendChild(td);
-    table.appendChild(tr)
+    table.appendChild(tr);
+    return;
+  } else {
+    cars.forEach((car, index) => {
+    if(index === 0) {
+      const td = document.createElement('td');
+      const img = document.createElement('img');
+      img.src = car;
+      img.width = 100;
+      img.height = 100;
+      td.appendChild(img);
+      tr.appendChild(td);
+    } else {
+      const td = document.createElement('td');
+      td.textContent = car;
+      tr.appendChild(td);
+    }
+  })
   }
 };
 
